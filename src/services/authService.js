@@ -3,7 +3,7 @@ import axios from 'axios';
 import api from './api';
 
 // API base URL for reference
-const API_URL = 'http://localhost:5000/api';
+const API_URL = 'https://erm-server.onrender.com/api';
 
 // Register user
 export const register = async (userData) => {

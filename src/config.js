@@ -1,5 +1,5 @@
 // API Configuration
-export const API_URL = 'http://localhost:5000/api';
+export const API_URL = 'https://erm-server.onrender.com';
  
 // Other configuration constants can be added here
 export const TOKEN_KEY = 'auth_token';
