@@ -470,8 +470,8 @@ const EmployeeDashboard = () => {
         </div>
 
         {/* Tasks and Upcoming Leaves */}
-        <div className="grid grid-cols-1 gap-6 mt-8 lg:grid-cols-2">
-          {/* Tasks */}
+        {/* <div className="grid grid-cols-1 gap-6 mt-8 lg:grid-cols-2">
+          
           <div className="overflow-hidden bg-white rounded-lg shadow">
             <div className="px-6 py-5 border-b border-gray-200">
               <h3 className="text-lg font-medium leading-6 text-gray-900">My Tasks</h3>
@@ -514,7 +514,7 @@ const EmployeeDashboard = () => {
             </div>
           </div>
 
-          {/* Upcoming Leaves */}
+        
           <div className="overflow-hidden bg-white rounded-lg shadow">
             <div className="px-6 py-5 border-b border-gray-200">
               <h3 className="text-lg font-medium leading-6 text-gray-900">Upcoming Leaves</h3>
@@ -557,7 +557,7 @@ const EmployeeDashboard = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div>  */}
 
         {/* Announcements */}
         <div className="mt-8">

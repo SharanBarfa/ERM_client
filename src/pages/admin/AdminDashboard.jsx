@@ -219,7 +219,7 @@ const AdminDashboard = () => {
         <p className="mt-1 text-sm text-gray-600">
           Welcome back, {user?.name || 'Admin'}! Here's what's happening in your organization.
         </p>
-        <div className="mt-4 flex space-x-4">
+        {/* <div className="mt-4 flex space-x-4">
           <a href="/admin/attendance" className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700">
             Manage Attendance
           </a>
@@ -229,7 +229,7 @@ const AdminDashboard = () => {
           <a href="/admin/project" className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700">
             Manage Projects
           </a>
-        </div>
+        </div> */}
       </div>
 
       <div className="px-4 mx-auto max-w-7xl sm:px-6 md:px-8">
