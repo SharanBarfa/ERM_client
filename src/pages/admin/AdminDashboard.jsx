@@ -4,8 +4,10 @@ import { getEmployees } from '../../services/employeeService';
 import { getDepartments } from '../../services/departmentService';
 import { getRecentActivities } from '../../services/activityService';
 import { getTeams } from '../../services/teamService';
-// import { getProjects } from '../../services/projectService';
+import { getProjects } from '../../services/projectService';
+import { getUpcomingEvents, createEvent } from '../../services/eventService';
 import RecentActivities from '../../components/dashboard/RecentActivities';
+import { format } from 'date-fns';
 
 const AdminDashboard = () => {
   const { user } = useAuth();
@@ -22,6 +24,17 @@ const AdminDashboard = () => {
   const [upcomingEvents, setUpcomingEvents] = useState([]);
   const [teams, setTeams] = useState([]);
   const [projects, setProjects] = useState([]);
+  const [showEventModal, setShowEventModal] = useState(false);
+  const [eventFormData, setEventFormData] = useState({
+    title: '',
+    description: '',
+    date: new Date().toISOString().split('T')[0],
+    location: '',
+    participants: 0,
+    type: 'event'
+  });
+  const [eventLoading, setEventLoading] = useState(false);
+  const [eventError, setEventError] = useState('');
 
   useEffect(() => {
     fetchDashboardData();
@@ -110,17 +123,70 @@ const AdminDashboard = () => {
         // Don't throw error to prevent dashboard from failing completely
       }
 
-      setUpcomingEvents([
-        { id: 1, title: 'Team Building Workshop', date: 'Apr 15, 2025', participants: 45 },
-        { id: 2, title: 'Quarterly Performance Review', date: 'Apr 20, 2025', participants: 232 },
-        { id: 3, title: 'New Hire Orientation', date: 'Apr 25, 2025', participants: 8 }
-      ]);
+      // Fetch upcoming events
+      try {
+        const eventsResponse = await getUpcomingEvents(3);
+        console.log('Events response:', eventsResponse);
+        if (eventsResponse && eventsResponse.success) {
+          setUpcomingEvents(eventsResponse.data || []);
+        } else {
+          console.log('Events data not available:', eventsResponse);
+          setUpcomingEvents([]);
+        }
+      } catch (err) {
+        console.error('Error fetching events:', err);
+        setUpcomingEvents([]);
+      }
 
     } catch (err) {
       console.error('Error fetching dashboard data:', err);
       setError(err.message || 'Failed to fetch dashboard data');
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleEventChange = (e) => {
+    const { name, value } = e.target;
+    setEventFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleEventSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      setEventLoading(true);
+      setEventError('');
+
+      const response = await createEvent(eventFormData);
+      
+      if (response.success) {
+        // Refresh events
+        const eventsResponse = await getUpcomingEvents(3);
+        if (eventsResponse.success) {
+          setUpcomingEvents(eventsResponse.data || []);
+        }
+        
+        // Reset form and close modal
+        setEventFormData({
+          title: '',
+          description: '',
+          date: new Date().toISOString().split('T')[0],
+          location: '',
+          participants: 0,
+          type: 'event'
+        });
+        setShowEventModal(false);
+      } else {
+        setEventError(response.error || 'Failed to create event');
+      }
+    } catch (err) {
+      console.error('Error creating event:', err);
+      setEventError(err.message || 'Failed to create event');
+    } finally {
+      setEventLoading(false);
     }
   };
 
@@ -449,3 +515,4 @@ const AdminDashboard = () => {
 };
 
 export default AdminDashboard;
+

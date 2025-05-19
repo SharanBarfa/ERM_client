@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin, MessageSquare } from 'lucide-react';
+import axios from 'axios';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -13,6 +14,8 @@ const Contact = () => {
   });
   
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
   
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -22,26 +25,39 @@ const Contact = () => {
     }));
   };
   
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // In a real app, you would send this data to your backend
-    console.log('Form submitted:', formData);
-    setSubmitted(true);
+    setLoading(true);
+    setError('');
     
-    // Reset form after submission
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      company: '',
-      employees: '',
-      message: ''
-    });
-    
-    // Reset submission status after 5 seconds
-    setTimeout(() => {
-      setSubmitted(false);
-    }, 5000);
+    try {
+      // Send data to backend API
+      const response = await axios.post('/api/contacts', formData);
+      
+      if (response.data.success) {
+        setSubmitted(true);
+        
+        // Reset form after submission
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          company: '',
+          employees: '',
+          message: ''
+        });
+        
+        // Reset submission status after 5 seconds
+        setTimeout(() => {
+          setSubmitted(false);
+        }, 5000);
+      }
+    } catch (err) {
+      setError('Failed to submit form. Please try again later.');
+      console.error('Error submitting contact form:', err);
+    } finally {
+      setLoading(false);
+    }
   };
   
   const officeLocations = [
@@ -307,3 +323,4 @@ const Contact = () => {
 };
 
 export default Contact;
+
