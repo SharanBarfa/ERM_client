@@ -4,7 +4,6 @@ import { getEmployees } from '../../services/employeeService';
 import { getDepartments } from '../../services/departmentService';
 import { getRecentActivities } from '../../services/activityService';
 import { getTeams } from '../../services/teamService';
-import { getProjects } from '../../services/projectService';
 import { getUpcomingEvents, createEvent } from '../../services/eventService';
 import RecentActivities from '../../components/dashboard/RecentActivities';
 
@@ -105,22 +104,22 @@ const AdminDashboard = () => {
         // Don't throw error to prevent dashboard from failing completely
       }
 
-      // Fetch projects
-      console.log('Fetching projects for dashboard');
-      try {
-        const projectsResponse = await getProjects();
-        console.log('Projects response:', projectsResponse);
-        if (projectsResponse && projectsResponse.success) {
-          setProjects(projectsResponse.data || []);
-        } else {
-          console.log('Projects data not available:', projectsResponse);
-          setProjects([]);
-        }
-      } catch (err) {
-        console.error('Error fetching projects:', err);
-        setProjects([]);
-        // Don't throw error to prevent dashboard from failing completely
-      }
+      // // Fetch projects
+      // console.log('Fetching projects for dashboard');
+      // try {
+      //   const projectsResponse = await getProjects();
+      //   console.log('Projects response:', projectsResponse);
+      //   if (projectsResponse && projectsResponse.success) {
+      //     setProjects(projectsResponse.data || []);
+      //   } else {
+      //     console.log('Projects data not available:', projectsResponse);
+      //     setProjects([]);
+      //   }
+      // } catch (err) {
+      //   console.error('Error fetching projects:', err);
+      //   setProjects([]);
+      //   // Don't throw error to prevent dashboard from failing completely
+      // }
 
       // Fetch upcoming events
       try {
@@ -391,7 +390,7 @@ const AdminDashboard = () => {
                         </div>
                         <div>
                           <a
-                            href={`/admin/teams/${team._id}`}
+                            href={`/admin/teams`}
                             className="inline-flex items-center px-2.5 py-1.5 border border-gray-300 text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50"
                           >
                             View

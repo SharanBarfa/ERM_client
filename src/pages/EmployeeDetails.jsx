@@ -76,7 +76,7 @@ const EmployeeDetails = () => {
               <div className="flex-shrink-0 h-16 w-16">
                 <img
                   className="h-16 w-16 rounded-full"
-                  src={employee.profileImage || '/default-avatar.png'}
+                  src={employee.profileImage || ''}
                   alt={employee.fullName}
                 />
               </div>

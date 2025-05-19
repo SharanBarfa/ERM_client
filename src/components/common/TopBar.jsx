@@ -55,7 +55,7 @@ const TopBar = () => {
     ? [
         { name: 'Dashboard', path: '/admin/dashboard' },
         { name: 'Employees', path: '/admin/employees' },
-        // { name: 'Teams', path: '/admin/teams' },
+        { name: 'Teams', path: '/admin/teams' },
       
         { name: 'Departments', path: '/admin/departments' },
         // { name: 'Project', path: '/admin/project' },
