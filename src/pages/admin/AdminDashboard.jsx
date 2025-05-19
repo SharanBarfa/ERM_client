@@ -7,7 +7,6 @@ import { getTeams } from '../../services/teamService';
 import { getProjects } from '../../services/projectService';
 import { getUpcomingEvents, createEvent } from '../../services/eventService';
 import RecentActivities from '../../components/dashboard/RecentActivities';
-import { format } from 'date-fns';
 
 const AdminDashboard = () => {
   const { user } = useAuth();

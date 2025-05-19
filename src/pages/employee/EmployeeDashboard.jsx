@@ -469,7 +469,6 @@ const EmployeeDashboard = () => {
           </div>
         </div>
 
-        {/* Tasks and Upcoming Leaves */}
         {/* <div className="grid grid-cols-1 gap-6 mt-8 lg:grid-cols-2">
           
           <div className="overflow-hidden bg-white rounded-lg shadow">
@@ -559,7 +558,6 @@ const EmployeeDashboard = () => {
           </div>
         </div>  */}
 
-        {/* Announcements */}
         <div className="mt-8">
           <div className="overflow-hidden bg-white rounded-lg shadow">
             <div className="px-6 py-5 border-b border-gray-200">
