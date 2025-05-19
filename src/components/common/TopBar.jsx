@@ -55,16 +55,17 @@ const TopBar = () => {
     ? [
         { name: 'Dashboard', path: '/admin/dashboard' },
         { name: 'Employees', path: '/admin/employees' },
-        { name: 'Teams', path: '/admin/teams' },
+        // { name: 'Teams', path: '/admin/teams' },
+      
         { name: 'Departments', path: '/admin/departments' },
-        { name: 'Project', path: '/admin/project' },
+        // { name: 'Project', path: '/admin/project' },
         { name: 'Attendance', path: '/admin/attendance' }
       ]
     : [
         { name: 'Dashboard', path: '/employee/dashboard' },
         { name: 'My Profile', path: '/employee/profile' },
-        { name: 'My Team', path: '/employee/team' },
-        { name: 'Projects', path: '/employee/projects' },
+        // { name: 'My Team', path: '/employee/team' },
+        // { name: 'Projects', path: '/employee/projects' },
         { name: 'Attendance', path: '/employee/attendance' }
       ];
 
